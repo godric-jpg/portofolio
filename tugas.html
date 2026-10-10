@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tugas - pemrograman web</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EAE6DF;
+    }
+    .font-serif-heading {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+<body class="text-gray-900 min-h-screen p-6 md:p-12">
+
+  <div class="max-w-4xl mx-auto">
+    <a href="index.html" class="inline-block border border-black px-4 py-2 text-sm font-semibold text-black hover:bg-black hover:text-white transition-colors mb-8">
+      ← Kembali ke Portfolio
+    </a>
+
+    <header class="mb-10 text-center md:text-left">
+      <h1 class="font-serif-heading text-4xl md:text-5xl font-bold uppercase tracking-tight text-gray-900">
+        Kalkulator Bangun Datar
+      </h1>
+      <p class="text-gray-600 text-sm mt-2">Pilih bangun datar di bawah ini untuk menghitung luas dan kelilingnya secara otomatis.</p>
+    </header>
+
+    <!-- CONTAINER KALKULATOR -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- PERSEGI -->
+      <div class="bg-[#F6F4EE] p-6 rounded-xl border border-black/10 shadow-sm">
+        <h2 class="font-serif-heading text-2xl font-bold mb-4">Persegi</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Sisi (s)</label>
+            <input type="number" id="sisi-persegi" placeholder="Masukkan panjang sisi" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <button onclick="hitungPersegi()" class="w-full py-2 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors">Hitung</button>
+          <div id="hasil-persegi" class="text-sm font-medium text-gray-800 pt-2"></div>
+        </div>
+      </div>
+
+      <!-- PERSEGI PANJANG -->
+      <div class="bg-[#F6F4EE] p-6 rounded-xl border border-black/10 shadow-sm">
+        <h2 class="font-serif-heading text-2xl font-bold mb-4">Persegi Panjang</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Panjang (p)</label>
+            <input type="number" id="panjang-pp" placeholder="Masukkan panjang" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Lebar (l)</label>
+            <input type="number" id="lebar-pp" placeholder="Masukkan lebar" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <button onclick="hitungPersegiPanjang()" class="w-full py-2 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors">Hitung</button>
+          <div id="hasil-pp" class="text-sm font-medium text-gray-800 pt-2"></div>
+        </div>
+      </div>
+
+      <!-- SEGITIGA -->
+      <div class="bg-[#F6F4EE] p-6 rounded-xl border border-black/10 shadow-sm">
+        <h2 class="font-serif-heading text-2xl font-bold mb-4">Segitiga</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Alas (a)</label>
+            <input type="number" id="alas-segitiga" placeholder="Masukkan alas" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Tinggi (t)</label>
+            <input type="number" id="tinggi-segitiga" placeholder="Masukkan tinggi" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <button onclick="hitungSegitiga()" class="w-full py-2 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors">Hitung Luas</button>
+          <div id="hasil-segitiga" class="text-sm font-medium text-gray-800 pt-2"></div>
+        </div>
+      </div>
+
+      <!-- LINGKARAN -->
+      <div class="bg-[#F6F4EE] p-6 rounded-xl border border-black/10 shadow-sm">
+        <h2 class="font-serif-heading text-2xl font-bold mb-4">Lingkaran</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1">Jari-Jari (r)</label>
+            <input type="number" id="r-lingkaran" placeholder="Masukkan jari-jari" class="w-full px-3 py-2 bg-white border border-gray-300 rounded text-sm focus:outline-none focus:border-black">
+          </div>
+          <button onclick="hitungLingkaran()" class="w-full py-2 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors">Hitung</button>
+          <div id="hasil-lingkaran" class="text-sm font-medium text-gray-800 pt-2"></div>
+        </div>
+      </div>
+           
+      <!-- TUGAS REACT: PLAYBOX -->
+    <header class="mt-16 mb-6 text-center md:text-left">
+      <h2 class="font-serif-heading text-3xl md:text-4xl font-bold uppercase tracking-tight text-gray-900">
+        Tugas React: Playbox
+      </h2>
+      <p class="text-gray-600 text-sm mt-2">Prototipe toko online mainan dengan React, Vite, dan Tailwind CSS.</p>
+    </header>
+    <div class="bg-[#F6F4EE] p-6 rounded-xl border border-black/10 shadow-sm">
+      <h3 class="font-serif-heading text-2xl font-bold mb-2">Playbox: E-Commerce Mainan</h3>
+      <p class="text-sm text-gray-700">
+        Katalog dengan pencarian dan filter kategori, keranjang belanja, checkout dengan validasi,
+        mode gelap, dan dashboard admin. Dibuat dengan konsep React Component, Props,
+        Conditional Rendering, useState, dan useContext.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <a href="https://playbox-one.vercel.app/" target="_blank" rel="noopener"
+           class="px-5 py-2 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors">Lihat Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function hitungPersegi() {
+      const s = parseFloat(document.getElementById('sisi-persegi').value);
+      if (isNaN(s)) return;
+      const luas = s * s;
+      const keliling = 4 * s;
+      document.getElementById('hasil-persegi').innerHTML = `Luas: <b>${luas}</b> | Keliling: <b>${keliling}</b>`;
+    }
+
+    function hitungPersegiPanjang() {
+      const p = parseFloat(document.getElementById('panjang-pp').value);      const l = parseFloat(document.getElementById('lebar-pp').value);
+      if (isNaN(p) || isNaN(l)) return;
+      const luas = p * l
+      const keliling = 2 * (p + l);
+      document.getElementById('hasil-pp').innerHTML = `Luas: <b>${luas}</b> | Keliling: <b>${keliling}</b>`;
+    }
+
+    function hitungSegitiga() {
+      const a = parseFloat(document.getElementById('alas-segitiga').value);
+      const t = parseFloat(document.getElementById('tinggi-segitiga').value);
+      if (isNaN(a) || isNaN(t)) return;
+      const luas = 0.5 * a * t;
+      document.getElementById('hasil-segitiga').innerHTML = `Luas: <b>${luas}</b>`;
+    }
+
+    function hitungLingkaran() {
+      const r = parseFloat(document.getElementById('r-lingkaran').value);
+      if (isNaN(r)) return;
+      const luas = (Math.PI * r * r).toFixed(2);
+      const keliling = (2 * Math.PI * r).toFixed(2);
+      document.getElementById('hasil-lingkaran').innerHTML = `Luas: <b>${luas}</b> | Keliling: <b>${keliling}</b>`;
+    }
+  </script>
+  
+</body>
+</html>
